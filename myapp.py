@@ -14,4 +14,4 @@ df = yf.download(tickers,start, end, auto_adjust=True)['Close']
 st.table(df.head())
 
 
-st.global_settings.timezone 
+#st.global_settings.timezone 
