@@ -1,11 +1,17 @@
-import pandas as pd
 import yfinance as yf
-from datetime import datetime
+from datetime import datetime as dt
+import pytz
+
 import streamlit as st
 
+tz = pytz.timezone("America/New_York")
+start = tz.localize(dt(2013,1,1))
+end = tz.localize(dt.today())
+
 tickers = "MA,V,AMZN,JPM,BA".split(",")
+df = yf.download(tickers,start, end, auto_adjust=True)['Close']
+
+st.table(df.head())
 
 
-df = yf.download(tickers,'2022-1-1',datetime.today(), auto_adjust=True)['Close']
-
-st.write(df.head())
+st.global_settings.timezone 
